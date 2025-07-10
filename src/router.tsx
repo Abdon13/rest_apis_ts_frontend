@@ -1,11 +1,12 @@
  import { createBrowserRouter } from "react-router-dom";
 import Layaut from "./layauts/Layaut";
 import Products from "./views/Products";
-import {loader as productsLoader} from "./actions/Products.action";
-import {action as updateAvailabilityAction} from "./actions/Products.action";
-import NewProduct, {action as newProductAction} from "./views/NewProduct";
-import EditProduct, {loader as editProductLoader, action as editProductAction} from "./views/EditProduct";
+import {action as updateAvailabilityAction, loader as productsLoader} from "./actions/Products.action";
+import {action as newProductAction} from "./actions/NewProduct.action";
+import {action as editProductAction, loader as editProductLoader  } from "./actions/EditProduct.action"
 import { action as deleteProductAction } from "./actions/ProductDetails.action";
+import EditProduct from "./views/EditProduct";
+import NewProduct from "./views/NewProduct";
 
  export const router = createBrowserRouter([//En este router se va declarando las rutas en un arreglo después se define las rutas en un objeto
     {

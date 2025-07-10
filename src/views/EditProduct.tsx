@@ -1,37 +1,7 @@
-import { Link, Form, useActionData, type ActionFunctionArgs, redirect, type LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { Link, Form, useActionData, useLoaderData } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
-import {  getProductsById, updateProduct } from "../services/ProductService";
 import type { Product } from "../types";
 import ProductForm from "./ProductForm";
-
-export async function loader({params} : LoaderFunctionArgs){
-    if(params.id !== undefined){
-        const product = await getProductsById(+params.id)
-        if(!product){
-            return redirect('/')
-        }
-        return product
-    }
-}
-
-export async function action({request, params} : ActionFunctionArgs){
-    const data = Object.fromEntries(await request.formData())//Recuperando los datos del formulario
-    let error = ''
-
-    if(Object.values(data).includes('')){
-        error = 'Todos los campos son obligatorios' //Mandando error si algún campo esta vació 
-    }
-    if(error.length){
-        return error //Al retornar algo en tus acciones están disponibles en el componente por medio del useActionData
-    }
-
-    if(params.id !== undefined){
-        await updateProduct(data, +params.id)
-
-        return redirect('/')
-    }
-    
-}
 
 const availabilityOptions = [
    { name: 'Disponible', value: true},
